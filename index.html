@@ -747,7 +747,7 @@ textarea.form-input{min-height:120px;resize:vertical}
 
       <!-- Session Picker -->
       <div style="display:flex;gap:20px;max-width:640px;margin:40px auto 40px;flex-wrap:wrap" class="reveal">
-        <div onclick="pickSession(this,'morning')" class="session-card session-active" id="session-morning" style="flex:1;min-width:260px;padding:28px 24px;border-radius:var(--radius);border:2px solid var(--accent);background:var(--accent-soft);cursor:pointer;text-align:center;transition:var(--transition)">
+        <div onclick="pickSession(this,'morning')" class="session-card session-active" id="session-morning" style="flex:1;min-width:260px;padding:28px 24px;border-radius:var(--radius);border:2px solid var(--accent);background:rgba(28,63,100,0.08);cursor:pointer;text-align:center;transition:var(--transition)">
           <div style="font-size:.75rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:8px">Session 1</div>
           <div style="font-family:var(--font-serif);font-size:1.4rem;color:var(--text-dark);margin-bottom:4px">8:30AM - 3:00PM</div>
           <div style="font-size:.85rem;color:var(--text-secondary-dark)">Includes transfers to and from Hubert Estate</div>
@@ -761,10 +761,10 @@ textarea.form-input{min-height:120px;resize:vertical}
 
       <!-- Form -->
       <div class="reveal" style="max-width:640px;margin:0 auto">
-        <div class="form-grid">
-          <div class="form-group"><input type="text" class="form-input" placeholder="Name *" required style="background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.12);color:var(--text-dark)"></div>
-          <div class="form-group"><input type="email" class="form-input" placeholder="Email *" required style="background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.12);color:var(--text-dark)"></div>
-          <div class="form-group"><input type="tel" class="form-input" placeholder="Contact Number *" required style="background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.12);color:var(--text-dark)"></div>
+        <form class="form-grid" onsubmit="event.preventDefault();alert('Enquiry sent! (Demo)')">
+          <div class="form-group"><input type="text" class="form-input" placeholder="Your Name" required style="background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.12);color:var(--text-dark)"></div>
+          <div class="form-group"><input type="email" class="form-input" placeholder="Email Address" required style="background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.12);color:var(--text-dark)"></div>
+          <div class="form-group"><input type="tel" class="form-input" placeholder="Contact Number" required style="background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.12);color:var(--text-dark)"></div>
           <div class="form-group">
             <select class="form-input" id="specialSession" style="background-color:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.12);color:var(--text-dark)">
               <option value="morning" selected>8:30AM - 3:00PM</option>
@@ -772,8 +772,8 @@ textarea.form-input{min-height:120px;resize:vertical}
             </select>
           </div>
           <div class="form-group full"><textarea class="form-input" placeholder="Your message (optional)" style="background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.12);color:var(--text-dark)"></textarea></div>
-          <div class="form-submit"><button class="btn btn-primary">Book Now <i class="fas fa-arrow-right"></i></button></div>
-        </div>
+          <div class="form-submit"><button class="btn btn-primary" type="submit">Book Now <i class="fas fa-arrow-right"></i></button></div>
+        </form>
       </div>
     </div>
   </section>
@@ -909,7 +909,7 @@ function pickSession(el, value) {
     c.classList.remove('session-active');
   });
   el.style.borderColor = 'var(--accent)';
-  el.style.background = 'var(--accent-soft)';
+  el.style.background = 'rgba(28,63,100,0.08)';
   el.classList.add('session-active');
   document.getElementById('specialSession').value = value;
 }
