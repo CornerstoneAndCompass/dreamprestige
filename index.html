@@ -716,7 +716,7 @@ textarea.form-input{min-height:120px;resize:vertical}
           <p class="section-subtitle section-subtitle-dark" style="margin-bottom:20px">Experience the thrill of driving luxury supercars through the winding roads and breathtaking scenery of the Yarra Valley region.</p>
           <p class="section-subtitle section-subtitle-dark"><strong style="color:var(--text-dark)">Saturday 15 February | Hubert Estate, Yarra Valley</strong></p>
           <div style="margin-top:24px"><p class="section-subtitle section-subtitle-dark"><strong style="color:var(--accent)">$3,500 per couple</strong> (includes GST)</p><p style="font-size:.9rem;color:var(--text-muted-dark);margin-top:8px">Limited Spots Available!</p></div>
-          <div style="margin-top:32px"><a onclick="goBook('special')" class="btn btn-primary">Book This Experience <i class="fas fa-arrow-right"></i></a></div>
+          <div style="margin-top:32px"><a onclick="document.getElementById('special-form').scrollIntoView({behavior:'smooth'})" class="btn btn-primary">Book This Experience <i class="fas fa-arrow-right"></i></a></div>
         </div>
         <div class="corporate-image reveal" style="border:1px solid var(--glass-border-dark)"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/Wine-02-optimised-2.jpg" alt="Valentine's"></div>
       </div>
@@ -733,7 +733,48 @@ textarea.form-input{min-height:120px;resize:vertical}
         <div class="highlight-card glass glass-hover reveal reveal-delay-2"><div class="highlight-icon"><i class="fas fa-shield-alt"></i></div><h3 style="color:#fff">Full Insurance</h3><p style="color:var(--text-secondary)">Comprehensive vehicle insurance with no bonds required.</p></div>
         <div class="highlight-card glass glass-hover reveal reveal-delay-3"><div class="highlight-icon"><i class="fas fa-camera"></i></div><h3 style="color:#fff">Pro Photography</h3><p style="color:var(--text-secondary)">Professional photography throughout the day to capture every moment.</p></div>
       </div>
-      <div style="text-align:center;margin-top:24px;color:var(--text-secondary);font-size:.9rem"><p>Sessions: 8:30AM - 3:00PM or 11:00AM - 5:30PM (includes transfer time)</p></div>
+    </div>
+  </section>
+
+  <!-- Special Events Booking Form -->
+  <section class="section section-light" id="special-form">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-label section-label-dark reveal">Book Now</span>
+        <h2 class="section-title section-title-dark reveal">Choose Your <em>Session</em></h2>
+        <p class="section-subtitle section-subtitle-dark mx-auto reveal">Select your preferred time and fill in your details below. $3,500 per couple (includes GST).</p>
+      </div>
+
+      <!-- Session Picker -->
+      <div style="display:flex;gap:20px;max-width:640px;margin:40px auto 40px;flex-wrap:wrap" class="reveal">
+        <div onclick="pickSession(this,'morning')" class="session-card session-active" id="session-morning" style="flex:1;min-width:260px;padding:28px 24px;border-radius:var(--radius);border:2px solid var(--accent);background:var(--accent-soft);cursor:pointer;text-align:center;transition:var(--transition)">
+          <div style="font-size:.75rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:8px">Session 1</div>
+          <div style="font-family:var(--font-serif);font-size:1.4rem;color:var(--text-dark);margin-bottom:4px">8:30AM - 3:00PM</div>
+          <div style="font-size:.85rem;color:var(--text-secondary-dark)">Includes transfers to and from Hubert Estate</div>
+        </div>
+        <div onclick="pickSession(this,'afternoon')" class="session-card" id="session-afternoon" style="flex:1;min-width:260px;padding:28px 24px;border-radius:var(--radius);border:2px solid rgba(0,0,0,0.1);background:transparent;cursor:pointer;text-align:center;transition:var(--transition)">
+          <div style="font-size:.75rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:8px">Session 2</div>
+          <div style="font-family:var(--font-serif);font-size:1.4rem;color:var(--text-dark);margin-bottom:4px">11:00AM - 5:30PM</div>
+          <div style="font-size:.85rem;color:var(--text-secondary-dark)">Includes transfers to and from Hubert Estate</div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="reveal" style="max-width:640px;margin:0 auto">
+        <div class="form-grid">
+          <div class="form-group"><input type="text" class="form-input" placeholder="Name *" required style="background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.12);color:var(--text-dark)"></div>
+          <div class="form-group"><input type="email" class="form-input" placeholder="Email *" required style="background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.12);color:var(--text-dark)"></div>
+          <div class="form-group"><input type="tel" class="form-input" placeholder="Contact Number *" required style="background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.12);color:var(--text-dark)"></div>
+          <div class="form-group">
+            <select class="form-input" id="specialSession" style="background-color:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.12);color:var(--text-dark)">
+              <option value="morning" selected>8:30AM - 3:00PM</option>
+              <option value="afternoon">11:00AM - 5:30PM</option>
+            </select>
+          </div>
+          <div class="form-group full"><textarea class="form-input" placeholder="Your message (optional)" style="background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.12);color:var(--text-dark)"></textarea></div>
+          <div class="form-submit"><button class="btn btn-primary">Book Now <i class="fas fa-arrow-right"></i></button></div>
+        </div>
+      </div>
     </div>
   </section>
 </div>
@@ -858,6 +899,19 @@ function playSound(btn, url) {
   btn.querySelector('i').className = 'fas fa-pause';
   currentAudio.play();
   currentAudio.onended = () => { btn.classList.remove('playing'); btn.querySelector('i').className = 'fas fa-volume-up'; currentAudio = null; currentBtn = null; };
+}
+
+// Session picker for Special Events
+function pickSession(el, value) {
+  document.querySelectorAll('.session-card').forEach(c => {
+    c.style.borderColor = 'rgba(0,0,0,0.1)';
+    c.style.background = 'transparent';
+    c.classList.remove('session-active');
+  });
+  el.style.borderColor = 'var(--accent)';
+  el.style.background = 'var(--accent-soft)';
+  el.classList.add('session-active');
+  document.getElementById('specialSession').value = value;
 }
 
 // Mobile menu
