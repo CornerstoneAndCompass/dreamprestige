@@ -67,7 +67,8 @@ img{max-width:100%;display:block}a{text-decoration:none;color:inherit;transition
 .nav.scrolled{padding:12px 0;background:rgba(6,6,6,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--glass-border)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1280px;margin:0 auto;padding:0 24px}
 .nav-logo{display:flex;align-items:center;gap:10px;cursor:pointer}
-.nav-logo img{height:60px;width:auto;filter:brightness(0) invert(1)}
+.nav-logo img{height:80px;width:auto;filter:brightness(0) invert(1);transition:height .3s ease}
+.nav.scrolled .nav-logo img{height:50px}
 .nav-links{display:flex;align-items:center;gap:36px;list-style:none}
 .nav-links a{font-size:.85rem;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:var(--text-secondary);position:relative;cursor:pointer}
 .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--accent);transition:width .3s}
@@ -75,6 +76,7 @@ img{max-width:100%;display:block}a{text-decoration:none;color:inherit;transition
 .nav-links a.active{color:#fff}.nav-links a.active::after{width:100%;background:var(--accent)}
 .nav-cta .btn{padding:12px 28px;font-size:.8rem}
 .nav-mobile-toggle{display:none;background:none;color:var(--text-primary);font-size:1.5rem}
+.nav-mobile-book{display:none}
 
 /* ═══════ HERO - TEXT ON RIGHT ═══════ */
 .hero{min-height:100vh;display:flex;align-items:flex-end;position:relative;overflow:hidden;padding-bottom:80px}
@@ -267,7 +269,14 @@ textarea.form-input{min-height:120px;resize:vertical}
   .footer-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:768px){
-  .nav-links{display:none}.nav-mobile-toggle{display:block}
+  .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;width:100%;background:rgba(6,6,6,0.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:24px;gap:0;border-bottom:1px solid var(--glass-border)}
+  .nav-links.open{display:flex}
+  .nav-links li{width:100%}
+  .nav-links a{display:block;padding:14px 0;border-bottom:1px solid var(--glass-border);font-size:1rem;color:var(--text-primary)}
+  .nav-links li:last-child a{border-bottom:none}
+  .nav-mobile-toggle{display:block}
+  .nav-cta{display:none}
+  .nav-mobile-book{display:block}
   .hero h1{font-size:2.6rem}.hero-stats{flex-wrap:wrap;gap:24px}
   .hero .container{justify-content:center}.hero-content{text-align:center}.hero-actions{justify-content:center}.hero-stats{justify-content:center}
   .fleet-grid,.highlights-grid,.testimonials-track{grid-template-columns:1fr}
@@ -286,16 +295,17 @@ textarea.form-input{min-height:120px;resize:vertical}
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a class="nav-logo" onclick="showPage('home')"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/image-1.png" alt="Dream Prestige Drive"></a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="navLinks">
       <li><a onclick="showPage('home')" data-page="home" class="active">Home</a></li>
       <li><a onclick="showPage('corporate')" data-page="corporate">Corporate Days</a></li>
       <li><a onclick="showPage('fleet')" data-page="fleet">The Fleet</a></li>
       <li><a onclick="showPage('about')" data-page="about">About</a></li>
       <li><a onclick="showPage('gallery')" data-page="gallery">Gallery</a></li>
       <li><a onclick="showPage('special')" data-page="special">Special Events</a></li>
+      <li class="nav-mobile-book"><a onclick="goBook()" class="btn btn-primary btn-sm" style="justify-content:center;margin-top:8px">Book Now <i class="fas fa-arrow-right"></i></a></li>
     </ul>
     <div class="nav-cta"><a onclick="goBook()" class="btn btn-primary btn-sm">Book Now <i class="fas fa-arrow-right"></i></a></div>
-    <button class="nav-mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')"><i class="fas fa-bars"></i></button>
+    <button class="nav-mobile-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars" id="menuIcon"></i></button>
   </div>
 </nav>
 
@@ -337,10 +347,10 @@ textarea.form-input{min-height:120px;resize:vertical}
     <div class="text-center">
       <span class="section-label section-label-dark reveal">What's Included</span>
       <h2 class="section-title section-title-dark reveal">More Than a Drive. <em>An Experience.</em></h2>
-      <p class="section-subtitle section-subtitle-dark mx-auto reveal">Every detail curated for an unforgettable day - from the moment you arrive to the last sip of wine.</p>
+      <p class="section-subtitle section-subtitle-dark mx-auto reveal">Every detail curated for an unforgettable day, from the moment you arrive to the last sip of wine.</p>
     </div>
     <div class="highlights-grid">
-      <div class="highlight-card card-light reveal reveal-delay-1"><div class="highlight-icon"><i class="fas fa-car-side"></i></div><h3>Fast Cars</h3><p>Self-drive up to 4 different supercars. No instructor in the car - just you, the road, and pure adrenaline through scenic countryside routes.</p></div>
+      <div class="highlight-card card-light reveal reveal-delay-1"><div class="highlight-icon"><i class="fas fa-car-side"></i></div><h3>Fast Cars</h3><p>Self-drive up to 4 different supercars. No instructor in the car, just you, the road, and pure adrenaline through scenic countryside routes.</p></div>
       <div class="highlight-card card-light reveal reveal-delay-2"><div class="highlight-icon"><i class="fas fa-users"></i></div><h3>Great Hosts</h3><p>Expert hosts lead in a separate vehicle with live two-way radio guidance, ensuring you get the most from every twist and turn.</p></div>
       <div class="highlight-card card-light reveal reveal-delay-3"><div class="highlight-icon"><i class="fas fa-utensils"></i></div><h3>Culinary Delights</h3><p>A curated culinary journey with gourmet meals and premium wine tastings at exclusive venues including Quarters by Hubert Estate.</p></div>
       <div class="highlight-card card-light reveal reveal-delay-1"><div class="highlight-icon"><i class="fas fa-helicopter"></i></div><h3>Helicopter Transfers</h3><p>Arrive in style with a scenic helicopter flight from Melbourne CBD over the stunning Yarra Valley landscape.</p></div>
@@ -392,7 +402,7 @@ textarea.form-input{min-height:120px;resize:vertical}
     <div class="text-center">
       <span class="section-label reveal">Watch</span>
       <h2 class="section-title reveal">The Dream Prestige <em>Experience</em></h2>
-      <p class="section-subtitle mx-auto reveal">See what a day with Dream Prestige Drive looks like - from helicopter transfers to supercar drives through the Yarra Valley.</p>
+      <p class="section-subtitle mx-auto reveal">See what a day with Dream Prestige Drive looks like, from helicopter transfers to supercar drives through the Yarra Valley.</p>
     </div>
     <div class="video-showcase reveal">
       <video id="showcaseVideo" preload="metadata" playsinline poster="https://dreamprestige.com/wp-content/uploads/2024/11/Cars-01-optimised.webp">
@@ -418,7 +428,7 @@ textarea.form-input{min-height:120px;resize:vertical}
         <div class="corporate-features">
           <div class="corp-feature"><div class="corp-feature-icon"><i class="fas fa-users"></i></div><div><h4>Team Building</h4><p>Boost team morale with an experience that celebrates success and strengthens relationships.</p></div></div>
           <div class="corp-feature"><div class="corp-feature-icon"><i class="fas fa-handshake"></i></div><div><h4>Client Entertainment</h4><p>Impress valued partners with a thrilling yet sophisticated environment where lasting memories are created.</p></div></div>
-          <div class="corp-feature"><div class="corp-feature-icon"><i class="fas fa-trophy"></i></div><div><h4>Incentive Rewards</h4><p>Reward top performers with something money can't buy - a day they'll never forget.</p></div></div>
+          <div class="corp-feature"><div class="corp-feature-icon"><i class="fas fa-trophy"></i></div><div><h4>Incentive Rewards</h4><p>Reward top performers with something money can't buy, a day they'll never forget.</p></div></div>
         </div>
         <div style="margin-top:32px"><a onclick="showPage('corporate')" class="btn btn-primary">Enquire for Corporate <i class="fas fa-arrow-right"></i></a></div>
       </div>
@@ -724,14 +734,68 @@ textarea.form-input{min-height:120px;resize:vertical}
   </section>
 </div>
 
+<!-- ══════════════ PRIVACY POLICY ══════════════ -->
+<div class="page" id="page-privacy">
+  <div class="page-hero" style="min-height:320px;padding:180px 0 80px"><div class="page-hero-bg" style="background:#0a0a0a"></div><h1>Privacy Policy</h1></div>
+  <section class="section section-light">
+    <div class="container">
+      <div class="about-content reveal">
+        <p><strong>Last updated:</strong> March 2026</p>
+        <p>Dream Prestige Drive ("we", "our", "us") is committed to protecting the privacy of our customers and website visitors. This Privacy Policy outlines how we collect, use and safeguard your personal information when you visit dreamprestige.com or book an experience with us.</p>
+        <h3 style="color:var(--text-dark);margin:32px 0 12px;font-family:var(--font-serif);font-size:1.4rem">Information We Collect</h3>
+        <p>We may collect personal information including your name, email address, phone number and any details you provide through our booking and contact forms. We also collect standard website usage data such as IP addresses, browser type and pages visited through cookies and analytics tools.</p>
+        <h3 style="color:var(--text-dark);margin:32px 0 12px;font-family:var(--font-serif);font-size:1.4rem">How We Use Your Information</h3>
+        <p>Your information is used to process bookings and enquiries, communicate with you about your experience, improve our website and services, and send promotional material only where you have opted in. We do not sell or rent your personal data to third parties.</p>
+        <h3 style="color:var(--text-dark);margin:32px 0 12px;font-family:var(--font-serif);font-size:1.4rem">Third Party Services</h3>
+        <p>We use trusted third party services including Meta Pixel for advertising analytics and Microsoft Clarity for website usage insights. These services may collect anonymised data in accordance with their own privacy policies.</p>
+        <h3 style="color:var(--text-dark);margin:32px 0 12px;font-family:var(--font-serif);font-size:1.4rem">Data Security</h3>
+        <p>We take reasonable measures to protect your personal information from unauthorised access, loss or misuse. However, no method of electronic transmission or storage is completely secure.</p>
+        <h3 style="color:var(--text-dark);margin:32px 0 12px;font-family:var(--font-serif);font-size:1.4rem">Your Rights</h3>
+        <p>You may request access to, correction of, or deletion of your personal information at any time by contacting us at <a href="mailto:drivetime@dreamprestige.com" style="color:var(--accent);text-decoration:underline">drivetime@dreamprestige.com</a>.</p>
+        <h3 style="color:var(--text-dark);margin:32px 0 12px;font-family:var(--font-serif);font-size:1.4rem">Changes to This Policy</h3>
+        <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated revision date.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════════ TERMS OF SERVICE ══════════════ -->
+<div class="page" id="page-terms">
+  <div class="page-hero" style="min-height:320px;padding:180px 0 80px"><div class="page-hero-bg" style="background:#0a0a0a"></div><h1>Terms of Service</h1></div>
+  <section class="section section-light">
+    <div class="container">
+      <div class="about-content reveal">
+        <p><strong>Last updated:</strong> March 2026</p>
+        <p>By accessing and using the Dream Prestige Drive website (dreamprestige.com) and booking any of our experiences, you agree to the following terms and conditions.</p>
+        <h3 style="color:var(--text-dark);margin:32px 0 12px;font-family:var(--font-serif);font-size:1.4rem">Booking and Payment</h3>
+        <p>All bookings are subject to availability. A deposit or full payment may be required to secure your booking. Pricing is in Australian Dollars (AUD) and includes GST unless otherwise stated.</p>
+        <h3 style="color:var(--text-dark);margin:32px 0 12px;font-family:var(--font-serif);font-size:1.4rem">Cancellation Policy</h3>
+        <p>Cancellations must be made in writing to drivetime@dreamprestige.com. Cancellation fees may apply depending on the notice period provided. Please refer to your booking confirmation for specific cancellation terms.</p>
+        <h3 style="color:var(--text-dark);margin:32px 0 12px;font-family:var(--font-serif);font-size:1.4rem">Driver Requirements</h3>
+        <p>All drivers must be a minimum of 25 years of age, hold a full Australian driver licence, and have no driving offences. Dream Prestige Drive reserves the right to refuse participation to anyone who does not meet these requirements or is deemed unfit to drive.</p>
+        <h3 style="color:var(--text-dark);margin:32px 0 12px;font-family:var(--font-serif);font-size:1.4rem">Insurance and Liability</h3>
+        <p>Comprehensive vehicle insurance is included with all experiences. No security deposit or bond is required. In the event of an at fault accident, an excess of AUD$15,000 applies. Participants accept all risks associated with driving high performance vehicles.</p>
+        <h3 style="color:var(--text-dark);margin:32px 0 12px;font-family:var(--font-serif);font-size:1.4rem">Photography and Media</h3>
+        <p>Professional photography is included as part of the experience. By participating, you consent to the use of photographs and video taken during the experience for promotional purposes on our website and social media channels. If you do not wish to be featured, please inform our team on the day.</p>
+        <h3 style="color:var(--text-dark);margin:32px 0 12px;font-family:var(--font-serif);font-size:1.4rem">Weather and Conditions</h3>
+        <p>Experiences may be affected by weather or road conditions. Dream Prestige Drive reserves the right to modify or reschedule experiences for safety reasons. In such cases, alternative arrangements or credits will be offered.</p>
+        <h3 style="color:var(--text-dark);margin:32px 0 12px;font-family:var(--font-serif);font-size:1.4rem">Intellectual Property</h3>
+        <p>All content on this website including text, images, logos and design is the property of Dream Prestige Drive and may not be reproduced without written permission.</p>
+        <h3 style="color:var(--text-dark);margin:32px 0 12px;font-family:var(--font-serif);font-size:1.4rem">Governing Law</h3>
+        <p>These terms are governed by the laws of the State of Victoria, Australia. Any disputes will be subject to the exclusive jurisdiction of the courts of Victoria.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
 <!-- FOOTER -->
 <footer class="footer" id="footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand"><div class="footer-logo"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/image-f-1.png" alt="Dream Prestige Drive"></div><p>Experience the Thrill of a Supercar Driving Experience. It's Drive Time.</p><div class="footer-socials"><a href="https://www.facebook.com" target="_blank" class="footer-social"><i class="fab fa-facebook-f"></i></a><a href="https://www.instagram.com" target="_blank" class="footer-social"><i class="fab fa-instagram"></i></a><a href="https://www.youtube.com/@dreamprestigedrive" target="_blank" class="footer-social"><i class="fab fa-youtube"></i></a></div></div>
-      <div class="footer-col"><h4>Experience</h4><a onclick="showPage('fleet')">The Fleet</a><a onclick="showPage('corporate')">Corporate Days</a><a onclick="showPage('gallery')">Gallery</a><a onclick="showPage('special')">Special Events</a></div>
-      <div class="footer-col"><h4>Company</h4><a onclick="showPage('about')">About Us</a><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
-      <div class="footer-col"><h4>Get in Touch</h4><a onclick="goBook()">Book Now</a><a href="mailto:drivetime@dreamprestige.com">drivetime@dreamprestige.com</a><a>Melbourne, VIC</a></div>
+      <div class="footer-brand"><div class="footer-logo"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/image-f-1.png" alt="Dream Prestige Drive"></div><p>Experience the Thrill of a Supercar Driving Experience. It's Drive Time.</p><div class="footer-socials"><a href="https://www.facebook.com/dreamprestigedrive" target="_blank" class="footer-social"><i class="fab fa-facebook-f"></i></a><a href="https://www.instagram.com/dreamprestigedrive" target="_blank" class="footer-social"><i class="fab fa-instagram"></i></a><a href="https://www.youtube.com/@dreamprestigedrive" target="_blank" class="footer-social"><i class="fab fa-youtube"></i></a></div></div>
+      <div class="footer-col"><h4>Experience</h4><a onclick="showPage('fleet')" style="cursor:pointer">The Fleet</a><a onclick="showPage('corporate')" style="cursor:pointer">Corporate Days</a><a onclick="showPage('gallery')" style="cursor:pointer">Gallery</a><a onclick="showPage('special')" style="cursor:pointer">Special Events</a></div>
+      <div class="footer-col"><h4>Company</h4><a onclick="showPage('about')" style="cursor:pointer">About Us</a><a onclick="showPage('privacy')" style="cursor:pointer">Privacy Policy</a><a onclick="showPage('terms')" style="cursor:pointer">Terms of Service</a></div>
+      <div class="footer-col"><h4>Get in Touch</h4><a onclick="goBook()" style="cursor:pointer">Book Now</a><a href="mailto:drivetime@dreamprestige.com">drivetime@dreamprestige.com</a><a href="https://maps.google.com/?q=Yarra+Valley+Melbourne+VIC" target="_blank">Melbourne, VIC</a></div>
     </div>
     <div class="footer-bottom"><span>2026 Dream Prestige Drive. All rights reserved.</span><span>It's Drive Time&trade;</span></div>
   </div>
@@ -792,8 +856,23 @@ function playSound(btn, url) {
   currentAudio.onended = () => { btn.classList.remove('playing'); btn.querySelector('i').className = 'fas fa-volume-up'; currentAudio = null; currentBtn = null; };
 }
 
+// Mobile menu
+function toggleMobileMenu() {
+  const links = document.getElementById('navLinks');
+  const icon = document.getElementById('menuIcon');
+  links.classList.toggle('open');
+  icon.className = links.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
+}
+function closeMobileMenu() {
+  const links = document.getElementById('navLinks');
+  const icon = document.getElementById('menuIcon');
+  links.classList.remove('open');
+  icon.className = 'fas fa-bars';
+}
+
 // Page nav
 function showPage(page) {
+  closeMobileMenu();
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + page).classList.add('active');
   document.querySelectorAll('.nav-links a').forEach(a => { a.classList.remove('active'); if (a.dataset.page === page) a.classList.add('active'); });
@@ -805,6 +884,7 @@ function showPage(page) {
 
 // Book with pre-select
 function goBook(type) {
+  closeMobileMenu();
   showPage('home');
   setTimeout(() => {
     document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
