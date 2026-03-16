@@ -160,12 +160,8 @@ img{max-width:100%;display:block}a{text-decoration:none;color:inherit;transition
 
 /* Gallery Bento - no orphans */
 .gallery-bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:12px;margin-top:60px}
-.gallery-bento .gi{border-radius:var(--radius);overflow:hidden;position:relative;cursor:pointer;transition:var(--transition)}
-.gallery-bento .gi img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
-.gallery-bento .gi:hover img{transform:scale(1.06)}
-.gallery-bento .gi:hover .g-ov{opacity:1}
-.g-ov{position:absolute;inset:0;background:rgba(6,6,6,0.4);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;opacity:0;transition:var(--transition)}
-.g-ov i{font-size:1.8rem;color:#fff}
+.gallery-bento .gi{border-radius:var(--radius);overflow:hidden;position:relative}
+.gallery-bento .gi img{width:100%;height:100%;object-fit:cover}
 .gi-tall{grid-row:span 2}.gi-wide{grid-column:span 2}.gi-big{grid-column:span 2;grid-row:span 2}
 
 /* CTA / Form */
@@ -448,10 +444,10 @@ textarea.form-input{min-height:120px;resize:vertical}
       <p class="section-subtitle section-subtitle-dark mx-auto reveal">Embark on a day that blends luxury, speed, and indulgence. Your supercar driving experience will take you through breathtaking landscapes with gourmet dining and premium wine tastings.</p>
     </div>
     <div class="gallery-bento reveal" style="margin-top:48px">
-      <div class="gi gi-big"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/Drive-01.jpg" alt="Driving"><div class="g-ov"><i class="fas fa-expand"></i></div></div>
-      <div class="gi"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/Wine-01-scaled.webp" alt="Wine"><div class="g-ov"><i class="fas fa-expand"></i></div></div>
-      <div class="gi"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/Welcome-01-scaled.webp" alt="Welcome"><div class="g-ov"><i class="fas fa-expand"></i></div></div>
-      <div class="gi gi-wide"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/Cars-01-1.webp" alt="Fleet"><div class="g-ov"><i class="fas fa-expand"></i></div></div>
+      <div class="gi gi-big"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/Drive-01.jpg" alt="Driving"></div>
+      <div class="gi"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/Wine-01-scaled.webp" alt="Wine"></div>
+      <div class="gi"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/Welcome-01-scaled.webp" alt="Welcome"></div>
+      <div class="gi gi-wide"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/Cars-01-1.webp" alt="Fleet"></div>
     </div>
     <div class="text-center" style="margin-top:40px"><a onclick="showPage('gallery')" class="btn btn-outline-dark">View Full Gallery <i class="fas fa-arrow-right"></i></a></div>
   </div>
@@ -662,10 +658,15 @@ textarea.form-input{min-height:120px;resize:vertical}
   <div class="page-hero"><div class="page-hero-bg" style="background-image:url('https://dreamprestige.com/wp-content/uploads/2024/11/DSC03725-2.jpg');background-position:center 35%"></div><h1>About Us</h1><p>Our Story</p></div>
   <section class="section section-light">
     <div class="container">
-      <div class="about-content reveal">
-        <p>Dream Prestige Drive is dedicated to delivering a unique luxury experience in Melbourne. Our Melbourne-based team combines a deep appreciation for opulence and adventure to offer an unparalleled supercar experience.</p>
-        <p>Dream Prestige Drive stands as an embodiment of luxury and exclusivity, featuring an impressive fleet of high-end automobiles. To elevate the adventure, we've incorporated exhilarating helicopter scenic flights over some of Victoria's most stunning locations. Guests can marvel at the awe-inspiring views of the city and countryside from above before descending to partake in an exquisite dining experience at our carefully chosen venues.</p>
-        <p>Our team's dedication to excellence shines through in every aspect of the experience. We possess an in-depth knowledge of the cars, a profound passion for creating unforgettable moments, and an unwavering commitment to ensuring your experience is truly exceptional.</p>
+      <div class="corporate-layout" style="margin-top:0">
+        <div class="corporate-image reveal" style="border-radius:var(--radius-lg);border:1px solid rgba(0,0,0,0.08)"><img src="https://dreamprestige.com/wp-content/uploads/2025/01/Its-Drive-Time01.webp" alt="Dream Prestige Drive Experience" style="object-position:center 30%"></div>
+        <div class="reveal">
+          <span class="section-label section-label-dark">Our Story</span>
+          <h2 class="section-title section-title-dark">Delivering <em>Unforgettable</em> Experiences</h2>
+          <p class="section-subtitle section-subtitle-dark" style="margin-bottom:20px">Dream Prestige Drive is dedicated to delivering a unique luxury experience in Melbourne. Our Melbourne-based team combines a deep appreciation for opulence and adventure to offer an unparalleled supercar experience.</p>
+          <p class="section-subtitle section-subtitle-dark" style="margin-bottom:20px">Dream Prestige Drive stands as an embodiment of luxury and exclusivity, featuring an impressive fleet of high-end automobiles. To elevate the adventure, we've incorporated exhilarating helicopter scenic flights over some of Victoria's most stunning locations. Guests can marvel at the awe-inspiring views of the city and countryside from above before descending to partake in an exquisite dining experience at our carefully chosen venues.</p>
+          <p class="section-subtitle section-subtitle-dark">Our team's dedication to excellence shines through in every aspect of the experience. We possess an in-depth knowledge of the cars, a profound passion for creating unforgettable moments, and an unwavering commitment to ensuring your experience is truly exceptional.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -688,16 +689,16 @@ textarea.form-input{min-height:120px;resize:vertical}
     <div class="container">
       <!-- 12 images in a 4-col grid = 3 perfect rows, no orphans -->
       <div class="gallery-bento reveal">
-        <div class="gi gi-big"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/Chauffeur-02-scaled.webp" alt="Chauffeur"><div class="g-ov"><i class="fas fa-expand"></i></div></div>
-        <div class="gi"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/Drive-01.jpg" alt="Driving"><div class="g-ov"><i class="fas fa-expand"></i></div></div>
-        <div class="gi"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/Cars-01-1.webp" alt="Cars"><div class="g-ov"><i class="fas fa-expand"></i></div></div>
-        <div class="gi gi-wide"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/Cars-01.webp" alt="Fleet"><div class="g-ov"><i class="fas fa-expand"></i></div></div>
-        <div class="gi"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/Welcome-01-scaled.webp" alt="Welcome"><div class="g-ov"><i class="fas fa-expand"></i></div></div>
-        <div class="gi"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/Drive-02.jpg" alt="Drive"><div class="g-ov"><i class="fas fa-expand"></i></div></div>
-        <div class="gi"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/Cars-03-scaled.webp" alt="Cars"><div class="g-ov"><i class="fas fa-expand"></i></div></div>
-        <div class="gi"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/Wine-01-scaled.webp" alt="Wine"><div class="g-ov"><i class="fas fa-expand"></i></div></div>
-        <div class="gi gi-wide"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/image5.png" alt="Experience"><div class="g-ov"><i class="fas fa-expand"></i></div></div>
-        <div class="gi gi-wide"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/image_2.png" alt="Experience"><div class="g-ov"><i class="fas fa-expand"></i></div></div>
+        <div class="gi gi-big"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/Chauffeur-02-scaled.webp" alt="Chauffeur"></div>
+        <div class="gi"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/Drive-01.jpg" alt="Driving"></div>
+        <div class="gi"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/Cars-01-1.webp" alt="Cars"></div>
+        <div class="gi gi-wide"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/Cars-01.webp" alt="Fleet"></div>
+        <div class="gi"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/Welcome-01-scaled.webp" alt="Welcome"></div>
+        <div class="gi"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/Drive-02.jpg" alt="Drive"></div>
+        <div class="gi"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/Cars-03-scaled.webp" alt="Cars"></div>
+        <div class="gi"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/Wine-01-scaled.webp" alt="Wine"></div>
+        <div class="gi gi-wide"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/image5.png" alt="Experience"></div>
+        <div class="gi gi-wide"><img src="https://dreamprestige.com/wp-content/uploads/2024/11/image_2.png" alt="Experience"></div>
       </div>
     </div>
   </section>
